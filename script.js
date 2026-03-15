@@ -16,6 +16,10 @@ function Book(title, author, pages, haveRead) {
     };*/
 }
 
+Book.prototype.setReadStatus = function (status) {
+    this.haveRead = status;
+}
+
 function addBookToLibrary(title, author, pages, haveRead) {
     myLibrary.push(new Book(title, author, pages, haveRead));
 }

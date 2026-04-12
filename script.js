@@ -20,6 +20,21 @@ Book.prototype.setReadStatus = function (status) {
     this.haveRead = status;
 }
 
+const addBookBtn = document.getElementById('addBookBtn');
+const addBookDialog = document.getElementById('addBookDialog');
+const addBookCancel = document.getElementById('cancelAddBookDialog');
+
+addBookBtn.addEventListener('click', function () {
+    //addBookToLibrary('Added Book', 'The Man', 25, false);
+    //writeToHtml();
+    addBookDialog.showModal();
+});
+
+addBookCancel.addEventListener('click', function () {
+    addBookDialog.close();
+})
+
+
 function addBookToLibrary(title, author, pages, haveRead) {
     myLibrary.push(new Book(title, author, pages, haveRead));
 }
@@ -34,22 +49,26 @@ function removeBookFromLibrary(bookIdToRemove) {
 
 function writeToHtml() {
     const booksContainer = document.getElementById('booksContainer');
+
+    booksContainer.replaceChildren();
+
     for (let i = 0; i < myLibrary.length; i++) {
         const bookCard = document.createElement('div');
         bookCard.dataset.bookId = myLibrary[i].bookId;
+        bookCard.classList.add('bookCard');
 
         const title = document.createElement('p');
-        title.textContent = myLibrary[i].title;
+        title.textContent = 'Title: ' + myLibrary[i].title;
         title.classList.add('bookTitle');
         bookCard.appendChild(title);
 
         const author = document.createElement('p');
-        author.textContent = myLibrary[i].author;
+        author.textContent = 'Author: ' + myLibrary[i].author;
         author.classList.add('bookAuthor');
         bookCard.appendChild(author);
 
         const pages = document.createElement('p');
-        pages.textContent = myLibrary[i].pages;
+        pages.textContent = 'Pages: ' + myLibrary[i].pages;
         pages.classList.add('numPages');
         bookCard.appendChild(pages);
 
@@ -61,6 +80,5 @@ function writeToHtml() {
 for (let i = 0; i < 10; i++) {
     addBookToLibrary(`title${i}`, `author${i}`, `${i + 100}`, i % 2 === 0);
 }
-console.log(myLibrary);
 
 writeToHtml();

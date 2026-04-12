@@ -10,10 +10,16 @@
 </head>
 
 <body>
-
-    <div id="booksContainer">
-
+    <div class="header">
+        <button id="addBookBtn" type="button">Add Book</button>
     </div>
+
+    <div id="booksContainer"></div>
+
+    <dialog id="addBookDialog" closedby="none">
+        <p>Add a book in this modal</p>
+        <button id="cancelAddBookDialog" type="button">Cancel</button>
+    </dialog>
 
     <script src="script.js"></script>
 </body>

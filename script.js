@@ -23,16 +23,51 @@ Book.prototype.setReadStatus = function (status) {
 const addBookBtn = document.getElementById('addBookBtn');
 const addBookDialog = document.getElementById('addBookDialog');
 const addBookCancel = document.getElementById('cancelAddBookDialog');
+const addBookSave = document.getElementById('saveAddBookDialog');
 
 addBookBtn.addEventListener('click', function () {
     //addBookToLibrary('Added Book', 'The Man', 25, false);
     //writeToHtml();
+    clearAddBookDialog();
+
     addBookDialog.showModal();
+});
+
+addBookSave.addEventListener('click', function () {
+    const addTitle = document.getElementById('book_title').value.trim();
+    const addAuthor = document.getElementById('book_author').value.trim();
+    const addPages = document.getElementById('book_pages').value;
+    const addIsRead = document.getElementById('book_is_read').checked;
+
+    let formValid = true;
+
+    if (addTitle.length < 1) {
+        //alert('Title is a rquired field');
+        formValid = false;
+    }
+    if (addAuthor.length < 1) {
+        formValid = false;
+    }
+    if (addPages.length < 1) {
+        formValid = false;
+    }
+
+    if (formValid) {
+        addBookToLibrary(addTitle, addAuthor, addPages, addIsRead);
+
+        addBookDialog.close();
+
+        writeToHtml();
+    }
 });
 
 addBookCancel.addEventListener('click', function () {
     addBookDialog.close();
-})
+});
+
+function clearAddBookDialog() {
+    addBookDialog.querySelector('form').reset();
+}
 
 
 function addBookToLibrary(title, author, pages, haveRead) {

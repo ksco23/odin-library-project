@@ -141,8 +141,8 @@ function writeToHtml() {
         bookCard.appendChild(pages);
 
         const readStatus = document.createElement('p');
-        const readStatusString = myLibrary[i].haveRead ? 'I have read this book.' : 'I have not read this book.'
-        readStatus.textContent = 'Read Status: ' + readStatusString;
+        const readStatusString = myLibrary[i].haveRead ? 'Yes' : 'No'
+        readStatus.textContent = 'I have read this book: ' + readStatusString;
         readStatus.classList.add(readStatusClassname);
         bookCard.appendChild(readStatus);
 

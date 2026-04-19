@@ -20,10 +20,26 @@ Book.prototype.setReadStatus = function (status) {
     this.haveRead = status;
 }
 
+const removeBookBtnClassname = 'removeBookBtn';
+const bookCardClassname = 'bookCard';
+const booksContainer = document.getElementById('booksContainer');
 const addBookBtn = document.getElementById('addBookBtn');
 const addBookDialog = document.getElementById('addBookDialog');
 const addBookCancel = document.getElementById('cancelAddBookDialog');
 const addBookSave = document.getElementById('saveAddBookDialog');
+
+booksContainer.addEventListener('click', function (e) {
+    const target = e.target;
+
+    if (e.target.classList.contains(removeBookBtnClassname)) {
+        const bookCard = target.closest(`.${bookCardClassname}`);
+        const bookId = bookCard.dataset.bookId;
+
+        removeBookFromLibrary(bookId);
+
+        writeToHtml();
+    }
+});
 
 addBookBtn.addEventListener('click', function () {
     //addBookToLibrary('Added Book', 'The Man', 25, false);
@@ -83,14 +99,14 @@ function removeBookFromLibrary(bookIdToRemove) {
 }
 
 function writeToHtml() {
-    const booksContainer = document.getElementById('booksContainer');
+    //const booksContainer = document.getElementById('booksContainer');
 
     booksContainer.replaceChildren();
 
     for (let i = 0; i < myLibrary.length; i++) {
         const bookCard = document.createElement('div');
         bookCard.dataset.bookId = myLibrary[i].bookId;
-        bookCard.classList.add('bookCard');
+        bookCard.classList.add(bookCardClassname);
 
         const title = document.createElement('p');
         title.textContent = 'Title: ' + myLibrary[i].title;
@@ -106,6 +122,12 @@ function writeToHtml() {
         pages.textContent = 'Pages: ' + myLibrary[i].pages;
         pages.classList.add('numPages');
         bookCard.appendChild(pages);
+
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = 'Remove Book';
+        removeBtn.type = 'button';
+        removeBtn.classList.add(removeBookBtnClassname);
+        bookCard.appendChild(removeBtn);
 
         booksContainer.appendChild(bookCard);
     }

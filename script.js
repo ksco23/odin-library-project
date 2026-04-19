@@ -22,6 +22,8 @@ Book.prototype.setReadStatus = function (status) {
 
 const removeBookBtnClassname = 'removeBookBtn';
 const bookCardClassname = 'bookCard';
+const readStatusClassname = 'readStatus';
+const changeReadStatusBtnClassname = 'changeReadStatusBtn';
 const booksContainer = document.getElementById('booksContainer');
 const addBookBtn = document.getElementById('addBookBtn');
 const addBookDialog = document.getElementById('addBookDialog');
@@ -36,6 +38,15 @@ booksContainer.addEventListener('click', function (e) {
         const bookId = bookCard.dataset.bookId;
 
         removeBookFromLibrary(bookId);
+
+        writeToHtml();
+    }
+    else if (e.target.classList.contains(changeReadStatusBtnClassname)) {
+        const bookCard = target.closest(`.${bookCardClassname}`);
+        const bookId = bookCard.dataset.bookId;
+        const book = getBookById(bookId);
+
+        book.setReadStatus(!book.haveRead);
 
         writeToHtml();
     }
@@ -98,6 +109,12 @@ function removeBookFromLibrary(bookIdToRemove) {
     }
 }
 
+function getBookById(bookId) {
+    const bookIndex = myLibrary.findIndex((libBook) => libBook.bookId === bookId);
+
+    return bookIndex > -1 ? myLibrary[bookIndex] : null;
+}
+
 function writeToHtml() {
     //const booksContainer = document.getElementById('booksContainer');
 
@@ -123,11 +140,23 @@ function writeToHtml() {
         pages.classList.add('numPages');
         bookCard.appendChild(pages);
 
+        const readStatus = document.createElement('p');
+        const readStatusString = myLibrary[i].haveRead ? 'I have read this book.' : 'I have not read this book.'
+        readStatus.textContent = 'Read Status: ' + readStatusString;
+        readStatus.classList.add(readStatusClassname);
+        bookCard.appendChild(readStatus);
+
         const removeBtn = document.createElement('button');
         removeBtn.textContent = 'Remove Book';
         removeBtn.type = 'button';
         removeBtn.classList.add(removeBookBtnClassname);
         bookCard.appendChild(removeBtn);
+
+        const changeReadStatusBtn = document.createElement('button');
+        changeReadStatusBtn.textContent = 'Change Read Status';
+        changeReadStatusBtn.type = 'button';
+        changeReadStatusBtn.classList.add(changeReadStatusBtnClassname);
+        bookCard.appendChild(changeReadStatusBtn);
 
         booksContainer.appendChild(bookCard);
     }

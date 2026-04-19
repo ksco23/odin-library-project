@@ -162,9 +162,59 @@ function writeToHtml() {
     }
 }
 
+const starterBookArray = [
+    {
+        title: 'The Catcher in the Rye',
+        author: 'J. D. Salinger',
+        pages: '240',
+        read: true
+    },
+    {
+        title: 'Moby-Dick',
+        author: 'Herman Melville',
+        pages: '704',
+        read: true
+    },
+    {
+        title: 'Don Quixote',
+        author: 'Miguel de Cervantes',
+        pages: '1072',
+        read: false
+    },
+    {
+        title: 'Pride and Prejudice',
+        author: 'Jane Austen',
+        pages: '480',
+        read: false
+    },
+    {
+        title: 'To Kill a Mockingbird',
+        author: 'Harper Lee',
+        pages: '336',
+        read: true
+    },
+    {
+        title: 'Adventures of Huckleberry Finn',
+        author: 'Mark Twain',
+        pages: '400',
+        read: true
+    },
+    {
+        title: 'Absalom, Absalom!',
+        author: 'William Faulkner',
+        pages: '320',
+        read: false
+    },
+    {
+        title: 'Leaves of Grass',
+        author: 'Walt Whitman',
+        pages: '592',
+        read: false
+    }
+]
 
-for (let i = 0; i < 10; i++) {
-    addBookToLibrary(`title${i}`, `author${i}`, `${i + 100}`, i % 2 === 0);
+for (let i = 0; i < starterBookArray.length; i++) {
+    addBookToLibrary(starterBookArray[i].title, starterBookArray[i].author, starterBookArray[i].pages, starterBookArray[i].read);
 }
 
 writeToHtml();

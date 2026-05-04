@@ -23,6 +23,7 @@ Book.prototype.setReadStatus = function (status) {
 const removeBookBtnClassname = 'removeBookBtn';
 const bookCardClassname = 'bookCard';
 const readStatusClassname = 'readStatus';
+const invalidFormFieldClassname = 'invalidFormField';
 const changeReadStatusBtnClassname = 'changeReadStatusBtn';
 const booksContainer = document.getElementById('booksContainer');
 const addBookBtn = document.getElementById('addBookBtn');
@@ -61,9 +62,12 @@ addBookBtn.addEventListener('click', function () {
 });
 
 addBookSave.addEventListener('click', function () {
-    const addTitle = document.getElementById('book_title').value.trim();
-    const addAuthor = document.getElementById('book_author').value.trim();
-    const addPages = document.getElementById('book_pages').value;
+    const addTitleField = document.getElementById('book_title');
+    const addTitle = addTitleField.value.trim();
+    const addAuthorFiled = document.getElementById('book_author');
+    const addAuthor = addAuthorFiled.value.trim();
+    const addPagesField = document.getElementById('book_pages');
+    const addPages = addPagesField.value;
     const addIsRead = document.getElementById('book_is_read').checked;
 
     let formValid = true;
@@ -71,12 +75,26 @@ addBookSave.addEventListener('click', function () {
     if (addTitle.length < 1) {
         //alert('Title is a rquired field');
         formValid = false;
+        addTitleField.classList.add(invalidFormFieldClassname);
     }
+    else {
+        addTitleField.classList.remove(invalidFormFieldClassname);
+    }
+
     if (addAuthor.length < 1) {
         formValid = false;
+        addAuthorFiled.classList.add(invalidFormFieldClassname);
     }
+    else {
+        addAuthorFiled.classList.remove(invalidFormFieldClassname);
+    }
+
     if (addPages.length < 1) {
         formValid = false;
+        addPagesField.classList.add(invalidFormFieldClassname);
+    }
+    else {
+        addPagesField.classList.remove(invalidFormFieldClassname);
     }
 
     if (formValid) {
@@ -94,6 +112,10 @@ addBookCancel.addEventListener('click', function () {
 
 function clearAddBookDialog() {
     addBookDialog.querySelector('form').reset();
+
+    document.getElementById('book_title').classList.remove(invalidFormFieldClassname);
+    document.getElementById('book_author').classList.remove(invalidFormFieldClassname);
+    document.getElementById('book_pages').classList.remove(invalidFormFieldClassname);
 }
 
 

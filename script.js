@@ -125,38 +125,46 @@ function writeToHtml() {
         bookCard.dataset.bookId = myLibrary[i].bookId;
         bookCard.classList.add(bookCardClassname);
 
+        const bookInfoContainer = document.createElement('div');
+        bookInfoContainer.classList.add('bookInfoContainer');
+        bookCard.appendChild(bookInfoContainer);
+
         const title = document.createElement('p');
         title.textContent = 'Title: ' + myLibrary[i].title;
         title.classList.add('bookTitle');
-        bookCard.appendChild(title);
+        bookInfoContainer.appendChild(title);
 
         const author = document.createElement('p');
         author.textContent = 'Author: ' + myLibrary[i].author;
         author.classList.add('bookAuthor');
-        bookCard.appendChild(author);
+        bookInfoContainer.appendChild(author);
 
         const pages = document.createElement('p');
         pages.textContent = 'Pages: ' + myLibrary[i].pages;
         pages.classList.add('numPages');
-        bookCard.appendChild(pages);
+        bookInfoContainer.appendChild(pages);
 
         const readStatus = document.createElement('p');
         const readStatusString = myLibrary[i].haveRead ? 'Yes' : 'No'
         readStatus.textContent = 'I have read this book: ' + readStatusString;
         readStatus.classList.add(readStatusClassname);
-        bookCard.appendChild(readStatus);
+        bookInfoContainer.appendChild(readStatus);
 
-        const removeBtn = document.createElement('button');
-        removeBtn.textContent = 'Remove Book';
-        removeBtn.type = 'button';
-        removeBtn.classList.add(removeBookBtnClassname);
-        bookCard.appendChild(removeBtn);
+        const btnContainer = document.createElement('div');
+        btnContainer.classList.add('btnContainer');
+        bookCard.appendChild(btnContainer);
 
         const changeReadStatusBtn = document.createElement('button');
         changeReadStatusBtn.textContent = 'Change Read Status';
         changeReadStatusBtn.type = 'button';
         changeReadStatusBtn.classList.add(changeReadStatusBtnClassname);
-        bookCard.appendChild(changeReadStatusBtn);
+        btnContainer.appendChild(changeReadStatusBtn);
+
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = 'Remove Book';
+        removeBtn.type = 'button';
+        removeBtn.classList.add(removeBookBtnClassname);
+        btnContainer.appendChild(removeBtn);
 
         booksContainer.appendChild(bookCard);
     }

@@ -125,6 +125,11 @@ function writeToHtml() {
         bookCard.dataset.bookId = myLibrary[i].bookId;
         bookCard.classList.add(bookCardClassname);
 
+        const bookCardTitle = document.createElement('p');
+        bookCardTitle.textContent = myLibrary[i].title;
+        bookCardTitle.classList.add('bookCardTitle');
+        bookCard.appendChild(bookCardTitle);
+
         const bookInfoContainer = document.createElement('div');
         bookInfoContainer.classList.add('bookInfoContainer');
         bookCard.appendChild(bookInfoContainer);
@@ -145,8 +150,8 @@ function writeToHtml() {
         bookInfoContainer.appendChild(pages);
 
         const readStatus = document.createElement('p');
-        const readStatusString = myLibrary[i].haveRead ? 'Yes' : 'No'
-        readStatus.textContent = 'I have read this book: ' + readStatusString;
+        const readStatusString = myLibrary[i].haveRead ? 'Read' : 'Not Read'
+        readStatus.textContent = 'Read Status: ' + readStatusString;
         readStatus.classList.add(readStatusClassname);
         bookInfoContainer.appendChild(readStatus);
 

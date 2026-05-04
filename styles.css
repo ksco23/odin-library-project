@@ -94,6 +94,12 @@ button {
     gap: 10px;
 }
 
+.bookCardTitle {
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
 .bookCard .btnContainer {
     margin-top: auto;
     display: flex;

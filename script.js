@@ -10,10 +10,6 @@ function Book(title, author, pages, haveRead) {
     this.author = author;
     this.pages = pages;
     this.haveRead = haveRead;
-
-    /*this.info = function () {
-        return `${this.title} by ${this.author}, ${this.pages} pages, ${haveRead ? 'have read it' : 'not read yet'}`;
-    };*/
 }
 
 Book.prototype.setReadStatus = function (status) {
@@ -37,10 +33,13 @@ booksContainer.addEventListener('click', function (e) {
     if (e.target.classList.contains(removeBookBtnClassname)) {
         const bookCard = target.closest(`.${bookCardClassname}`);
         const bookId = bookCard.dataset.bookId;
+        const bookTitle = getBookById(bookId).title;
 
-        removeBookFromLibrary(bookId);
+        if (window.confirm(`Confirm that you want to delete ${bookTitle} from the library.`)) {
+            removeBookFromLibrary(bookId);
 
-        writeToHtml();
+            writeToHtml();
+        }
     }
     else if (e.target.classList.contains(changeReadStatusBtnClassname)) {
         const bookCard = target.closest(`.${bookCardClassname}`);
@@ -54,8 +53,6 @@ booksContainer.addEventListener('click', function (e) {
 });
 
 addBookBtn.addEventListener('click', function () {
-    //addBookToLibrary('Added Book', 'The Man', 25, false);
-    //writeToHtml();
     clearAddBookDialog();
 
     addBookDialog.showModal();
@@ -73,7 +70,6 @@ addBookSave.addEventListener('click', function () {
     let formValid = true;
 
     if (addTitle.length < 1) {
-        //alert('Title is a rquired field');
         formValid = false;
         addTitleField.classList.add(invalidFormFieldClassname);
     }
@@ -138,8 +134,6 @@ function getBookById(bookId) {
 }
 
 function writeToHtml() {
-    //const booksContainer = document.getElementById('booksContainer');
-
     booksContainer.replaceChildren();
 
     for (let i = 0; i < myLibrary.length; i++) {

@@ -10,31 +10,44 @@
 </head>
 
 <body>
-    <div class="header">
-        <button id="addBookBtn" type="button">Add Book</button>
+    <div class="contentContainer">
+        <div class="header">
+            <h1>The Library</h1>
+            <button id="addBookBtn" type="button">Add Book</button>
+        </div>
+
+        <div id="booksContainer"></div>
+
+        <dialog id="addBookDialog" closedby="none">
+            <p class="h2">Add New Book</p>
+            <form action="">
+                <div class="textInputGroup">
+                    <label for="book_title">* Title:</label>
+                    <input type="text" id="book_title" name="book_title">
+                </div>
+
+                <div class="textInputGroup">
+                    <label for="book_author">* Author:</label>
+                    <input type="text" id="book_author" name="book_author">
+                </div>
+
+                <div class="textInputGroup">
+                    <label for="book_pages">* Pages:</label>
+                    <input type="number" id="book_pages" name="book_pages">
+                </div>
+
+                <div class="checkboxInputGroup">
+                    <input type="checkbox" id="book_is_read" name="book_is_read">
+                    <label for="book_is_read">I Have Read This Book</label>
+                </div>
+
+                <p>* Indicates required fields</p>
+
+                <button id="saveAddBookDialog" type="button">Add Book</button>
+                <button id="cancelAddBookDialog" type="button">Cancel</button>
+            </form>
+        </dialog>
     </div>
-
-    <div id="booksContainer"></div>
-
-    <dialog id="addBookDialog" closedby="none">
-        <p>Add a New Book</p>
-        <form action="">
-            <label for="book_title">Title:</label>
-            <input type="text" id="book_title" name="book_title">
-
-            <label for="book_author">Author:</label>
-            <input type="text" id="book_author" name="book_author">
-
-            <label for="book_pages">Pages:</label>
-            <input type="number" id="book_pages" name="book_pages">
-
-            <input type="checkbox" id="book_is_read" name="book_is_read">
-            <label for="book_is_read">Have Read</label>
-
-            <button id="saveAddBookDialog" type="button">Save</button>
-            <button id="cancelAddBookDialog" type="button">Cancel</button>
-        </form>
-    </dialog>
 
     <script src="script.js"></script>
 </body>

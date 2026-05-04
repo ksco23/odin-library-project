@@ -1,10 +1,164 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+    color: #000;
+}
+
+body {
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    background-color: #142c3f;
+}
+
+p,
+h1 {
+    margin: 0;
+}
+
+.h2 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+input[type="text"] {
+    font-size: inherit;
+    font-family: inherit;
+}
+
+button {
+    padding: 6px 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 0;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+
+.header {
+    background-color: #142c3f;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    /*border: 2px solid #214a6c;*/
+}
+
+.header h1 {
+    font-size: 3rem;
+    font-weight: 500;
+}
+
+#addBookBtn,
+#saveAddBookDialog {
+    background: #12543a;
+    border: 2px solid #7be7bc;
+    color: #fff;
+}
+
+#addBookBtn:hover,
+#saveAddBookDialog:hover {
+    background-color: #04653e;
+}
+
+.contentContainer {
+    width: 100%;
+    max-width: 1100px;
+    min-height: 100vh;
+    margin: 0 auto;
+    background-color: #081926;
+}
+
 #booksContainer {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 10px;
+    padding: 10px;
 }
 
 .bookCard {
-    border: 1px solid black;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bookCard .btnContainer {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.removeBookBtn {
+    background: #541212;
+    border: 2px solid #c05050;
+    color: #fff;
+}
+
+.removeBookBtn:hover {
+    background-color: #851818;
+}
+
+.changeReadStatusBtn {
+    background: #123754;
+    border: 2px solid #3080be;
+    color: #fff;
+}
+
+.changeReadStatusBtn:hover {
+    background: #165a8f;
+}
+
+.bookCard,
+#addBookDialog {
+    background-color: #fff9e8;
+    border: 2px solid #caa43e;
+}
+
+#addBookDialog {
+    width: 100%;
+    max-width: 700px;
+    box-shadow: 0px 10px 12px 5px rgba(0, 0, 0, 0.5);
+}
+
+#addBookDialog .h2 {
+    text-align: center;
+}
+
+#addBookDialog form,
+form .textInputGroup {
+    display: grid;
+}
+
+#addBookDialog form {
+    gap: 10px;
+}
+
+form label {
+    font-weight: bold;
+}
+
+#cancelAddBookDialog {
+    background: #d2d2d2;
+    color: #000;
+}
+
+#cancelAddBookDialog:hover {
+    background: #afafaf;
+}
+
+#addBookDialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.75);
 }
